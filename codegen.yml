@@ -1,0 +1,7 @@
+overwrite: true
+schema: 'https://fake-api.avantstay.dev/graphql'
+generates:
+  path/to/your/types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'

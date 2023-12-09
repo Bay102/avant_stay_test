@@ -5,9 +5,9 @@ export const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export const ALLHOMES = gql`
-  query {
-    homes(guests: 10) {
+export const ALL_HOMES = gql`
+  query ALL_HOMES($guests: Int!) {
+    homes(guests: $guests) {
       count
       results {
         id

@@ -1,13 +1,21 @@
 import { ApolloProvider } from '@apollo/client';
 import './App.css';
 import { client } from './ApolloClient';
-import { Search } from './Components/Search';
+import { SearchPage } from './Components/SearchPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AppContextProvider } from './Components/Providers/AppContextProvider';
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Search />
-    </ApolloProvider>
+    <AppContextProvider>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<SearchPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ApolloProvider>
+    </AppContextProvider>
   );
 }
 
