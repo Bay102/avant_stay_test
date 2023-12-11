@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { AppContextTypes, Home } from '../../types';
 import { client } from '../../ApolloClient';
 import { DocumentNode } from 'graphql';
-import { HomesByGuests } from '../../queries';
+import { AllHomes } from '../../queries';
 
 export const AppContext = createContext({} as AppContextTypes);
 
@@ -12,7 +12,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    executeQuery(HomesByGuests, { guests: 6 });
+    executeQuery(AllHomes, {});
   }, []);
 
   const executeQuery = async (
@@ -28,7 +28,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       });
 
       setHomes(result.data.homes.results);
-      setCount(result.data.homes.count);
+      setCount(result.data.homes.results.length);
       setLoading(false);
 
       console.log(result);
