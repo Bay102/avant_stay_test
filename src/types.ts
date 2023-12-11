@@ -132,4 +132,10 @@ export type Region = {
   stateName: Scalars['String']['output'];
 };
 
-export type AppContextTypes = {};
+export type AppContextTypes = {
+  loading: boolean;
+  homes: Home[];
+  setHomes: (homes: Home[]) => void;
+  count: number;
+  setCount: (count: number) => void;
+};

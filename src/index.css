@@ -1,8 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cairo:wght@300;400&family=Saira+Condensed:wght@300&family=Source+Sans+3&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Afacad&family=Agbalumo&family=Cairo:wght@300;400&family=Kalnia&family=Lexend+Deca:wght@200&family=Roboto:ital,wght@1,100&family=Saira+Condensed:wght@300&family=Source+Sans+3&display=swap');
 
 body {
   margin: 0;
   min-width: 340px;
   max-width: 1440px;
   min-height: 100vh;
+  background-color: #fcf9f9;
+}
+
+.chevron_down {
+  position: absolute;
+  left: 32px;
+  bottom: 1px;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-size: 12px;
+  color: #999;
+  opacity: 1; /* Firefox */
 }
