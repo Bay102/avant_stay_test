@@ -1,4 +1,0 @@
-import { useContext } from 'react';
-import { AppContext } from './AppContextProvider';
-
-export const useAppProvider = () => useContext(AppContext);

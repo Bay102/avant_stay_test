@@ -7,16 +7,16 @@ import { AppContextProvider } from './Components/Providers/AppContextProvider';
 
 function App() {
   return (
-    <AppContextProvider>
-      <ApolloProvider client={client}>
-        <BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <AppContextProvider>
           <Routes>
             <Route path="/" element={<Navigate to="/homes" />} />
             <Route path="/homes" element={<SearchPage />} />
           </Routes>
-        </BrowserRouter>
-      </ApolloProvider>
-    </AppContextProvider>
+        </AppContextProvider>
+      </BrowserRouter>
+    </ApolloProvider>
   );
 }
 

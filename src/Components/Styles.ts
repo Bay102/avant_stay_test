@@ -241,6 +241,14 @@ export const Attribute = styled.p`
   margin: 2px 0;
 `;
 
+export const PriceContainer = styled.div`
+  height: 60px;
+  width: 100%;
+  background-color: #f5f5f5;
+  margin-top: 40px;
+  border-top: 1px solid #ebebeb;
+`;
+
 //Skelton Card
 
 type LBar = {

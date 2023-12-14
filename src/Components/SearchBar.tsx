@@ -1,3 +1,5 @@
+import { Order } from './Order';
+import Regions from './Regions';
 import {
   HeaderBar,
   InputBar,
@@ -10,9 +12,9 @@ import {
   Input,
   InputLabel,
   VerticalLine,
-  NavSelect,
   CouponBox,
   InputContainer,
+  NavSelect,
 } from './Styles';
 
 export const SearchBar = () => {
@@ -38,13 +40,7 @@ export const SearchBar = () => {
       </HeaderBar>
       <InputContainer>
         <InputBar>
-          <InputLabel width="30%">
-            Where
-            <NavSelect name="" id="">
-              <option value="">Any Region</option>
-            </NavSelect>
-          </InputLabel>
-          <VerticalLine />
+          <Regions />
           <InputLabel width="20%">
             When
             <Input placeholder="Select.." />
@@ -52,16 +48,14 @@ export const SearchBar = () => {
           <VerticalLine />
           <InputLabel width="15%">
             Who
-            <Input placeholder="Select..." />
+            <NavSelect>
+              <option value="">Select...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </NavSelect>
           </InputLabel>
           <VerticalLine />
-          <InputLabel width="10%">
-            Order
-            <NavSelect name="" id="">
-              <option value="">Relevance</option>
-            </NavSelect>
-            {/* <Input placeholder="Any region" /> */}
-          </InputLabel>
+          <Order />
         </InputBar>
         <CouponBox width="20%">
           Coupon

@@ -1,4 +1,5 @@
 import { gql } from '@apollo/client';
+import { UUID } from 'graphql-scalars'; // Add this import statement
 
 export const AllHomes = gql`
   query AllHomes {
@@ -33,6 +34,16 @@ export const AllHomes = gql`
         stateName
         stateCode
       }
+    }
+  }
+`;
+
+export const HomePrice = gql`
+  query HomePrice($ids: [UUID]!, $period: BookingPeriod!, $coupon: String) {
+    homesPricing(ids: $ids, period: $period, coupon: $coupon) {
+      homeId
+      numberOfNights
+      total
     }
   }
 `;
@@ -85,9 +96,23 @@ export const AllRegions = gql`
   }
 `;
 
-export const HOMES_BY_REGION = gql`
-  query HOMES_BY_REGION($regionName: String!) {
-    homes(regionName: $regionName) {
+export const SearchHomes = gql`
+  query Homes(
+    $region: UUID
+    $period: BookingPeriod
+    $guests: Int!
+    $order: HomesOrder!
+    $page: Int!
+    $pageSize: Int!
+  ) {
+    homes(
+      region: $region
+      period: $period
+      guests: $guests
+      order: $order
+      page: $page
+      pageSize: $pageSize
+    ) {
       count
       results {
         id

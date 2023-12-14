@@ -1,4 +1,6 @@
-import { Home } from '../types';
+import { Home } from '../gql/graphql';
+import { HomePrice } from './HomePrice';
+
 import {
   Attribute,
   AttributeIcon,
@@ -40,6 +42,7 @@ export const HomeCard = ({ home }: { home: Home }) => {
             {home.maxOccupancy} Guests
           </Attribute>
         </Attributes>
+        <HomePrice></HomePrice>
       </Info>
     </Card>
   );
