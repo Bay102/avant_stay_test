@@ -12,6 +12,10 @@ export type AppContextTypes = {
     query: DocumentNode,
     variables: Record<string, string | number | boolean>
   ) => Promise<void>;
+  updateUrlParams: (
+    key: string,
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
 };
 
 export type PriceProps = {

@@ -14,8 +14,8 @@ import {
   VerticalLine,
   CouponBox,
   InputContainer,
-  NavSelect,
-} from './Styles';
+} from '../Styles';
+import { Guests } from './Guests';
 
 export const SearchBar = () => {
   return (
@@ -46,15 +46,7 @@ export const SearchBar = () => {
             <Input placeholder="Select.." />
           </InputLabel>
           <VerticalLine />
-          <InputLabel width="15%">
-            Who
-            <NavSelect>
-              <option value="">Select...</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-            </NavSelect>
-          </InputLabel>
-          <VerticalLine />
+          <Guests />
           <Order />
         </InputBar>
         <CouponBox width="20%">

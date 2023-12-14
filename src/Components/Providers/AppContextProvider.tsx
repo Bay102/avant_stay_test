@@ -5,6 +5,7 @@ import { client } from '../../ApolloClient';
 import { DocumentNode } from 'graphql';
 import { AllHomes, SearchHomes } from '../../queries';
 import { Home, HomesOrder, Region } from '../../gql/graphql';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 // import { useLocation, useNavigate } from 'react-router-dom';
 
 export const AppContext = createContext({} as AppContextTypes);
@@ -13,16 +14,9 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [homes, setHomes] = useState<Home[]>([]);
   const [count, setCount] = useState<number>(0);
-  const [selectedRegion, setSelectedRegion] = useState<Region>();
 
-  // const navigate = useNavigate();
-
-  // const setQueryString = () => {
-  //   const searchParams = new URLSearchParams(location.search);
-  //   searchParams.set('param1', 'value1');
-  //   searchParams.set('param2', 'value2');
-  //   navigate({ ...location, search: searchParams.toString() });
-  // };
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const executeSearch = async (
     query: DocumentNode,
@@ -45,17 +39,43 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     }
   };
 
+  const updateUrlParams = (
+    key: string,
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const searchParams = new URLSearchParams(location.search);
+    searchParams.set(key, e.target.value);
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
+
   useEffect(() => {
-    // executeSearch(AllHomes, {});
+    const searchParams = new URLSearchParams(location.search);
+    const params = Object.fromEntries(searchParams.entries());
+
+    console.log(params.guests);
+
     executeSearch(SearchHomes, {
-      region: undefined,
-      period: undefined,
-      guests: 10,
-      order: HomesOrder.Relevance,
-      page: 1,
-      pageSize: 100,
+      ...params,
+      region: params.region ? params.region : undefined,
+      period: params.period ? Number(params.period) : undefined,
+      guests: params.guests ? Number(params.guests) : undefined,
+      order: params.order || HomesOrder.Relevance,
+      page: params.page ? Number(params.page) : 1,
+      pageSize: params.pageSize ? Number(params.pageSize) : 100,
     });
-  }, []);
+  }, [location]);
+
+  // useEffect(() => {
+  //   // executeSearch(AllHomes, {});
+  //   executeSearch(SearchHomes, {
+  //     region: undefined,
+  //     period: undefined,
+  //     guests: 10,
+  //     order: HomesOrder.Relevance,
+  //     page: 1,
+  //     pageSize: 100,
+  //   });
+  // }, []);
 
   // const searchByGuests = async (guests: number) => {
   //   executeQuery(HomesByGuests, {guests: guests})
@@ -65,6 +85,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     <AppContext.Provider
       value={{
         loading,
+        updateUrlParams,
         executeSearch,
         homes,
         setHomes,

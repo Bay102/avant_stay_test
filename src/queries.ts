@@ -1,5 +1,4 @@
 import { gql } from '@apollo/client';
-import { UUID } from 'graphql-scalars'; // Add this import statement
 
 export const AllHomes = gql`
   query AllHomes {
