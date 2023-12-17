@@ -18,12 +18,9 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [homes, setHomes] = useState<Home[]>([]);
   const [count, setCount] = useState<number>(0);
-
   const [priceLoad, setPriceLoad] = useState<boolean>(false);
-
   const [homePrices, setHomePrices] =
     useState<ApolloQueryResult<HomePriceQuery>>();
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -59,7 +56,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       });
 
       setHomes(result.data.homes.results);
-      setCount(result.data.homes.results.length);
+      setCount(result.data.homes.count);
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -80,10 +77,8 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
             period: { checkIn: checkInDate, checkOut: checkOutDate },
           },
         });
-
-        homePrices.loading ? setPriceLoad(true) : setPriceLoad(false);
-
         setHomePrices(homePrices);
+        homePrices.loading ? setPriceLoad(true) : setPriceLoad(false);
       } catch (error) {
         console.error('Error updating home prices: ', error);
       }
@@ -103,10 +98,6 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       page: params.page ? Number(params.page) : 1,
       pageSize: params.pageSize ? Number(params.pageSize) : 10,
     });
-
-    if (params.period) {
-      updateHomePrices(params.period);
-    }
   }, [location]);
 
   useEffect(() => {
@@ -116,7 +107,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     if (params.period) {
       updateHomePrices(params.period);
     }
-  }, [homes]);
+  }, [homes, location]);
 
   return (
     <AppContext.Provider

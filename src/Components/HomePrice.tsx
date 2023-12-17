@@ -13,24 +13,31 @@ export const HomePrice: React.FC<HomePriceProps> = ({
   nights,
   seasonPrice,
 }) => {
-  const { priceLoad, loading } = useAppProvider();
+  const { loading } = useAppProvider();
 
   return (
     <PriceContainer>
       {!loading && !totalPrice && (
         <>
           <PriceBox>
-            <Season>Budget Season</Season>${seasonPrice.lowSeason.minPrice} -{' '}
-            {seasonPrice.lowSeason.maxPrice}
+            <Season>
+              <img src="/low.svg" alt="" />
+              Budget Season
+            </Season>
+            ${seasonPrice.lowSeason.minPrice} - {seasonPrice.lowSeason.maxPrice}
           </PriceBox>
           <PriceBox>
-            <Season>Prime Season</Season>${seasonPrice.highSeason.minPrice} -{' '}
+            <Season>
+              {' '}
+              <img src="/high.svg" alt="" />
+              Prime Season
+            </Season>
+            ${seasonPrice.highSeason.minPrice} -{' '}
             {seasonPrice.highSeason.maxPrice}
           </PriceBox>
         </>
       )}
-      {priceLoad && <div>Loading...</div>}
-      {!loading && totalPrice && (
+      {totalPrice && (
         <PriceBox>
           <Season>Total | {nights} nights</Season>
           <TotalPrice>{`$${totalPrice}`}</TotalPrice>

@@ -22,6 +22,8 @@ export const HomeCard = ({ home }: { home: Home }) => {
 
   useEffect(() => {
     if (homePrices) {
+      console.log(homePrices);
+
       const findHomePrice = () => {
         const homePrice = homePrices?.data.homesPricing.find(
           (price) => price?.homeId === home.id
@@ -30,11 +32,10 @@ export const HomeCard = ({ home }: { home: Home }) => {
         setPrice(homePrice?.total as number);
         setNights(homePrice?.numberOfNights as number);
       };
+
       findHomePrice();
     }
   }, [homePrices]);
-
-  console.log(priceLoad);
 
   return (
     <Card>

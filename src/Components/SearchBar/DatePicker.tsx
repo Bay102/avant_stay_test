@@ -44,7 +44,9 @@ export const Dates = () => {
           Select...
         </FormatDate>
       ) : (
-        <FormatDate>{`${formattedStartDate} | ${formattedEndDate}`}</FormatDate>
+        <FormatDate
+          onClick={() => (calendar ? setCalendar(false) : setCalendar(true))}
+        >{`${formattedStartDate} | ${formattedEndDate}`}</FormatDate>
       )}
       {calendar && (
         <div>

@@ -91,6 +91,7 @@ export const InputLabel = styled.div<InputLabelProps>`
   width: ${(props) => props.width || 'auto'};
   padding: 5px 10px;
   margin-left: ${(props) => props.mLeft || '0'};
+  cursor: pointer;
 `;
 
 export const FormatDate = styled.div`
@@ -140,6 +141,7 @@ export const NavSelect = styled.select`
   border: none;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
+  cursor: pointer;
   &:focus {
     border: none;
     outline: none;
@@ -275,12 +277,6 @@ export const Season = styled.div`
   // padding-left: 20px;
 `;
 
-// export const Budget = styled.div``;
-
-// export const Budget = styled.div``;
-
-//Skelton Card
-
 type LBar = {
   width?: string;
   height?: string;
@@ -298,4 +294,25 @@ export const LoadingWrapper = styled.div`
   flex-direction: column;
   gap: 5px;
   margin-top: 30px;
+`;
+
+// No Results
+export const NoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 510px;
+  margin: auto;
+  padding: 10% 10%;
+`;
+
+export const Illustration = styled.img`
+  width: 185px;
+  height: 178px;
+  margin-bottom: 30px;
+`;
+
+export const NoResultsText = styled.div`
+  font-family: 'Source Sans 3', sans-serif;
 `;
