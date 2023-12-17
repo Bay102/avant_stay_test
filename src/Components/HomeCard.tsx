@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Home } from '../gql/graphql';
 import { HomePrice } from './HomePrice';
 
@@ -11,8 +12,30 @@ import {
   Location,
   Name,
 } from './Styles';
+import { useAppProvider } from './Providers/hookExports';
+import { PriceSkeleton } from './CardSkeleton';
 
 export const HomeCard = ({ home }: { home: Home }) => {
+  const { priceLoad, homePrices } = useAppProvider();
+  const [price, setPrice] = useState<number | null>(null);
+  const [nights, setNights] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (homePrices) {
+      const findHomePrice = () => {
+        const homePrice = homePrices?.data.homesPricing.find(
+          (price) => price?.homeId === home.id
+        );
+
+        setPrice(homePrice?.total as number);
+        setNights(homePrice?.numberOfNights as number);
+      };
+      findHomePrice();
+    }
+  }, [homePrices]);
+
+  console.log(priceLoad);
+
   return (
     <Card>
       <Image src={home.photos[0]?.url} alt={home.title} />
@@ -42,7 +65,14 @@ export const HomeCard = ({ home }: { home: Home }) => {
             {home.maxOccupancy} Guests
           </Attribute>
         </Attributes>
-        <HomePrice></HomePrice>
+        {priceLoad && <PriceSkeleton />}
+        {!priceLoad && (
+          <HomePrice
+            totalPrice={price}
+            nights={nights}
+            seasonPrice={home.seasonPricing}
+          />
+        )}
       </Info>
     </Card>
   );

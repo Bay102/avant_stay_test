@@ -5,9 +5,13 @@ export const Order = () => {
   const { updateUrlParams } = useAppProvider();
 
   return (
-    <InputLabel width="10%">
+    <InputLabel width="15%">
       Order
-      <NavSelect onChange={(e) => updateUrlParams('order', e)} name="" id="">
+      <NavSelect
+        onChange={(e) => updateUrlParams('order', null, e)}
+        name=""
+        id=""
+      >
         <option value="RELEVANCE">Relevance</option>
         <option value="PRICE_ASC">Price: lowest first</option>
         <option value="PRICE_DESC">Price: highest first</option>

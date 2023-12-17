@@ -1,11 +1,41 @@
-import { useHomePrice } from './Providers/hookExports';
-import { PriceContainer } from './Styles';
+import { HomeSeasonPricing } from '../gql/graphql';
+import { useAppProvider } from './Providers/hookExports';
+import { PriceBox, PriceContainer, Season, TotalPrice } from './Styles';
 
-export const HomePrice = () => {
-  const { loading, error, data } = useHomePrice({
-    ids: ['15633e74-4f59-11e9-87e3-c1cda8d0e495'],
-    period: { checkIn: '2022-01-01', checkOut: '2022-01-02' },
-  });
+interface HomePriceProps {
+  totalPrice: number | null;
+  nights: number | null;
+  seasonPrice: HomeSeasonPricing;
+}
 
-  return <PriceContainer></PriceContainer>;
+export const HomePrice: React.FC<HomePriceProps> = ({
+  totalPrice,
+  nights,
+  seasonPrice,
+}) => {
+  const { priceLoad, loading } = useAppProvider();
+
+  return (
+    <PriceContainer>
+      {!loading && !totalPrice && (
+        <>
+          <PriceBox>
+            <Season>Budget Season</Season>${seasonPrice.lowSeason.minPrice} -{' '}
+            {seasonPrice.lowSeason.maxPrice}
+          </PriceBox>
+          <PriceBox>
+            <Season>Prime Season</Season>${seasonPrice.highSeason.minPrice} -{' '}
+            {seasonPrice.highSeason.maxPrice}
+          </PriceBox>
+        </>
+      )}
+      {priceLoad && <div>Loading...</div>}
+      {!loading && totalPrice && (
+        <PriceBox>
+          <Season>Total | {nights} nights</Season>
+          <TotalPrice>{`$${totalPrice}`}</TotalPrice>
+        </PriceBox>
+      )}
+    </PriceContainer>
+  );
 };

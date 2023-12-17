@@ -6,9 +6,9 @@ export const Guests = () => {
 
   return (
     <>
-      <InputLabel width="15%">
+      <InputLabel width="20%">
         Who
-        <NavSelect onChange={(e) => updateUrlParams('guests', e)}>
+        <NavSelect onChange={(e) => updateUrlParams('guests', null, e)}>
           <option value="">Select...</option>
           {Array.from({ length: 30 }, (_, i) => (
             <option key={i + 1} value={i + 1}>

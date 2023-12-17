@@ -20,3 +20,8 @@ body {
   color: #999;
   opacity: 1; /* Firefox */
 }
+
+.datePicker {
+  position: absolute;
+  background-color: white;
+}

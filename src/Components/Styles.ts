@@ -93,6 +93,11 @@ export const InputLabel = styled.div<InputLabelProps>`
   margin-left: ${(props) => props.mLeft || '0'};
 `;
 
+export const FormatDate = styled.div`
+  color: black;
+  font-size: 12px;
+`;
+
 export const Input = styled.input`
   height: 25px;
   border: none;
@@ -242,12 +247,37 @@ export const Attribute = styled.p`
 `;
 
 export const PriceContainer = styled.div`
+  display: flex;
+  gap: 30px;
   height: 60px;
   width: 100%;
-  background-color: #f5f5f5;
+  // background-color: #f5f5f5;
   margin-top: 40px;
-  border-top: 1px solid #ebebeb;
+  // border-top: 1px solid #ebebeb;
 `;
+
+export const PriceBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: max-content;
+  height: 100%;
+  font-family: 'Source Sans 3', sans-serif;
+`;
+
+export const TotalPrice = styled.div`
+  text-align: left;
+`;
+
+export const Season = styled.div`
+  font-size: 12px;
+  color: grey;
+  // padding-left: 20px;
+`;
+
+// export const Budget = styled.div``;
+
+// export const Budget = styled.div``;
 
 //Skelton Card
 
@@ -261,4 +291,11 @@ export const LoadingBar = styled.div<LBar>`
   width: ${(props) => props.width || '0'};
   height: ${(props) => props.height || '0'};
   background: lightgrey;
+`;
+
+export const LoadingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 30px;
 `;

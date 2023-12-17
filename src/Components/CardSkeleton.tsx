@@ -4,9 +4,22 @@ import {
   Image,
   Info,
   LoadingBar,
+  LoadingWrapper,
   Location,
   Name,
 } from './Styles';
+
+export const CardsSkeleton = () => {
+  return (
+    <>
+      <SingleCard />
+      <br />
+      <SingleCard />
+      <br />
+      <SingleCard />
+    </>
+  );
+};
 
 const SingleCard = () => {
   return (
@@ -28,14 +41,12 @@ const SingleCard = () => {
   );
 };
 
-export const CardsSkeleton = () => {
+export const PriceSkeleton = () => {
   return (
-    <>
-      <SingleCard />
-      <br />
-      <SingleCard />
-      <br />
-      <SingleCard />
-    </>
+    <LoadingWrapper>
+      <LoadingBar width="74px" height="17px" />
+      <LoadingBar width="98px" height="22px" />
+      <LoadingBar width="45px" height="17px" />
+    </LoadingWrapper>
   );
 };

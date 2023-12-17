@@ -1,5 +1,6 @@
 import { DocumentNode } from 'graphql';
-import { BookingPeriod, Home } from './gql/graphql';
+import { BookingPeriod, Home, HomePriceQuery } from './gql/graphql';
+import { ApolloQueryResult } from '@apollo/client';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type AppContextTypes = {
@@ -14,8 +15,14 @@ export type AppContextTypes = {
   ) => Promise<void>;
   updateUrlParams: (
     key: string,
-    e: React.ChangeEvent<HTMLSelectElement>
+    value: string | null,
+    e: React.ChangeEvent<HTMLSelectElement> | null
   ) => void;
+  homePrices: ApolloQueryResult<HomePriceQuery> | undefined;
+  setHomePrices: (
+    value: React.SetStateAction<ApolloQueryResult<HomePriceQuery> | undefined>
+  ) => void;
+  priceLoad: boolean;
 };
 
 export type PriceProps = {

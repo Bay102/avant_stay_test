@@ -10,12 +10,12 @@ import {
   AuthButtonsContainer,
   AuthButton,
   Input,
-  InputLabel,
-  VerticalLine,
   CouponBox,
   InputContainer,
+  VerticalLine,
 } from '../Styles';
 import { Guests } from './Guests';
+import { Dates } from './DatePicker';
 
 export const SearchBar = () => {
   return (
@@ -41,10 +41,7 @@ export const SearchBar = () => {
       <InputContainer>
         <InputBar>
           <Regions />
-          <InputLabel width="20%">
-            When
-            <Input placeholder="Select.." />
-          </InputLabel>
+          <Dates />
           <VerticalLine />
           <Guests />
           <Order />
