@@ -11,9 +11,8 @@ export const Homes = () => {
 
   return (
     <HomesContainer>
-      {count !== 0 ? <HomeCount /> : <NoResults />}
-
       {loading && <CardsSkeleton />}
+      {count !== 0 ? <HomeCount /> : <NoResults />}
       {!loading &&
         homes?.map((home: Home) => <HomeCard home={home} key={home.id} />)}
     </HomesContainer>

@@ -25,6 +25,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
               Budget Season
             </Season>
             ${seasonPrice.lowSeason.minPrice} - {seasonPrice.lowSeason.maxPrice}
+            <Season>per night</Season>
           </PriceBox>
           <PriceBox>
             <Season>
@@ -34,6 +35,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
             </Season>
             ${seasonPrice.highSeason.minPrice} -{' '}
             {seasonPrice.highSeason.maxPrice}
+            <Season>per night</Season>
           </PriceBox>
         </>
       )}

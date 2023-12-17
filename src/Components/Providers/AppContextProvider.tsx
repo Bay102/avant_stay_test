@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import { AppContextTypes } from '../../types';
 import { client } from '../../ApolloClient';
-// import { DocumentNode } from 'graphql';
 import { SearchHomes } from '../../queries';
 import {
   Home,

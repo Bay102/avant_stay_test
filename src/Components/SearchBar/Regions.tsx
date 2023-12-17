@@ -1,6 +1,5 @@
 import { InputLabel, NavSelect, VerticalLine } from '../Styles';
 import { useAppProvider, useGetRegions } from '../Providers/hookExports';
-// import { useLocation, useNavigate } from 'react-router-dom';
 
 const Regions = () => {
   const { data } = useGetRegions();

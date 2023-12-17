@@ -39,10 +39,10 @@ export const HomeCard = ({ home }: { home: Home }) => {
 
   return (
     <Card>
-      <Image src={home.photos[0]?.url} alt={home.title} />
+      <Image src={home.photos[0]?.url} alt={home.title} loading="lazy" />
       <Info>
         <Location>
-          {home.regionName} | {home.cityName}
+          {home.regionName} | {home.cityName}, {home.stateCode}
         </Location>
         <Name>{home.title}</Name>
         <Attributes>

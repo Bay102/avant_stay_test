@@ -1,7 +1,6 @@
 import { DocumentNode } from 'graphql';
 import { BookingPeriod, Home, HomePriceQuery } from './gql/graphql';
 import { ApolloQueryResult } from '@apollo/client';
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type AppContextTypes = {
   loading: boolean;
