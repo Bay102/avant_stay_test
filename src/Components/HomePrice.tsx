@@ -1,6 +1,12 @@
 import { HomeSeasonPricing } from '../gql/graphql';
 import { useAppProvider } from './Providers/hookExports';
-import { PriceBox, PriceContainer, Season, TotalPrice } from './Styles';
+import {
+  PerNight,
+  PriceBox,
+  PriceContainer,
+  Season,
+  TotalPrice,
+} from './Styles';
 
 interface HomePriceProps {
   totalPrice: number | null;
@@ -43,6 +49,9 @@ export const HomePrice: React.FC<HomePriceProps> = ({
         <PriceBox>
           <Season>Total | {nights} nights</Season>
           <TotalPrice>{`$${totalPrice}`}</TotalPrice>
+          <PerNight>{`$${Math.round(
+            totalPrice / (nights ?? 1)
+          )} per night`}</PerNight>
         </PriceBox>
       )}
     </PriceContainer>
