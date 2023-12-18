@@ -12,7 +12,12 @@ export const Homes = () => {
 
   return (
     <HomesContainer>
-      {loading && <CardsSkeleton />}
+      {loading && (
+        <>
+          <HomeCount />
+          <CardsSkeleton />
+        </>
+      )}
       {count !== 0 ? <HomeCount /> : <NoResults />}
       <InfiniteScroll
         dataLength={homes.length}
