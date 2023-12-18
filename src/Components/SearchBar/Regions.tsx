@@ -15,6 +15,7 @@ const Regions = () => {
           id=""
         >
           <option value="">Select...</option>
+          <option value="">All Regions</option>
           {data?.regions.map((region) => (
             <option key={region?.id} value={region?.id}>
               {region?.name}, {region?.stateCode}

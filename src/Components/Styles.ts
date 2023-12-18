@@ -174,7 +174,7 @@ export const HomesContainer = styled.div`
 
 export const CountContainer = styled.div`
   position: relative;
-  margin-left: 120px;
+  margin-left: 100px;
 `;
 
 export const CountHeader = styled.p`

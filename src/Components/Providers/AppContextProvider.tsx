@@ -78,8 +78,6 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     const searchParams = new URLSearchParams(location.search);
     const params = Object.fromEntries(searchParams.entries());
 
-    console.log(page);
-
     executeSearch(SearchHomes, {
       ...params,
       region: params.region ? params.region : undefined,

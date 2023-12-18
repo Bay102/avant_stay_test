@@ -10,7 +10,7 @@ export const NoResults = () => {
     <NoResultsContainer>
       <Illustration src="/illustration.svg" alt="" />
       <NoResultsText>
-        Oops! We haven’t found anything mathing your search.
+        Oops! We haven't found anything matching your search.
       </NoResultsText>
       <NoResultsText>
         {' '}
