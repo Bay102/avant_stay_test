@@ -222,6 +222,7 @@ export const Info = styled.div`
 `;
 
 export const Image = styled.img`
+  max-width: 390px;
   width: 390px;
   height: 208px;
 `;
@@ -283,6 +284,12 @@ export const Season = styled.div`
   font-size: 12px;
   color: grey;
   // padding-left: 20px;
+`;
+
+export const PerNight = styled.div`
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 12px;
+  color: grey;
 `;
 
 type LBar = {
