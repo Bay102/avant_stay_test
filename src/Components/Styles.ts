@@ -34,6 +34,9 @@ export const Link = styled.a`
   border-bottom: 2px solid ${(props) => props.color || 'transparent'};
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
+  &:hover {
+    color: #53c3d0;
+  }
 `;
 
 export const AuthButtonsContainer = styled.div`
@@ -53,6 +56,10 @@ export const AuthButton = styled.div`
   cursor: pointer;
   border: 2px solid ${(props) => props.color || 'none'};
   border-radius: 4px;
+
+  &:hover {
+    border-color: #53c3d0;
+  }
 `;
 
 export const NavLogo = styled.img`
@@ -157,17 +164,17 @@ export const SearchContainer = styled.div`
 `;
 
 export const HomesContainer = styled.div`
-  width: 800px;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: max-content;
-  //   border: 1px solid #ccc;
   margin-top: 185px;
 `;
 
 export const CountContainer = styled.div`
   position: relative;
+  margin-left: 120px;
 `;
 
 export const CountHeader = styled.p`
@@ -202,8 +209,9 @@ export const Card = styled.div`
   display: flex;
   flex-direction: row;
   padding: 20px;
-  margin: 10px;
+  width: 80%;
   height: max-content;
+  margin: auto;
 `;
 
 export const Info = styled.div`
