@@ -128,7 +128,6 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
         setHomePrices,
         count,
         setCount,
-        // fetchMoreHomes,
         page,
         setPage,
       }}
