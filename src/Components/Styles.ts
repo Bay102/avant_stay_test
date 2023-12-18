@@ -324,3 +324,20 @@ export const Illustration = styled.img`
 export const NoResultsText = styled.div`
   font-family: 'Source Sans 3', sans-serif;
 `;
+
+export const NoRegionsBtn = styled.div`
+  width: 210px;
+  padding: 3px 0;
+  margin-top: 30px;
+  border: 2px solid #53c3d0;
+  border-radius: 4px;
+  font-family: 'Source Sans 3', sans-serif;
+  text-align: center;
+  color: #53c3d0;
+
+  &:hover {
+    border-color: #1c5d9f;
+    color: #1c5d9f;
+    cursor: pointer;
+  }
+`;

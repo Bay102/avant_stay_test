@@ -36,6 +36,7 @@ const SingleCard = () => {
         <Attributes>
           <LoadingBar width="230px" height="15px" />
         </Attributes>
+        <PriceSkeleton></PriceSkeleton>
       </Info>
     </Card>
   );

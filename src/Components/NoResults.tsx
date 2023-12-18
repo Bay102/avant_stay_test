@@ -1,4 +1,9 @@
-import { Illustration, NoResultsContainer, NoResultsText } from './Styles';
+import {
+  Illustration,
+  NoRegionsBtn,
+  NoResultsContainer,
+  NoResultsText,
+} from './Styles';
 
 export const NoResults = () => {
   return (
@@ -11,6 +16,7 @@ export const NoResults = () => {
         {' '}
         Try something else or reset the filters to see all region homes.
       </NoResultsText>
+      <NoRegionsBtn>See all homes</NoRegionsBtn>
     </NoResultsContainer>
   );
 };
