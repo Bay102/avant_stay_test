@@ -20,47 +20,13 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [priceLoad, setPriceLoad] = useState<boolean>(false);
   const [homePrices, setHomePrices] =
     useState<ApolloQueryResult<HomePriceQuery>>();
+  const [page, setPage] = useState(1);
   const location = useLocation();
   const navigate = useNavigate();
 
   function splitString(str: string) {
     return str.match(/.{1,10}/g);
   }
-
-  const updateUrlParams = (
-    key: string,
-    value: string | null,
-    e: React.ChangeEvent<HTMLSelectElement> | null
-  ) => {
-    const searchParams = new URLSearchParams(location.search);
-
-    if (key === 'period') {
-      searchParams.set(key, value as string);
-    }
-    if (key !== 'period') {
-      searchParams.set(key, e?.target.value ?? '');
-    }
-    navigate(`${location.pathname}?${searchParams.toString()}`);
-  };
-
-  const executeSearch = async (
-    query: DocumentNode,
-    variables: Record<string, string | number | boolean | undefined>
-  ) => {
-    setLoading(true);
-    try {
-      const result = await client.query({
-        query: query,
-        variables: variables,
-      });
-
-      setHomes(result.data.homes.results);
-      setCount(result.data.homes.count);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const updateHomePrices = async (date: string) => {
     setPriceLoad(true);
@@ -84,9 +50,35 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     }
   };
 
+  const executeSearch = async (
+    query: DocumentNode,
+    variables: Record<string, string | number | boolean | undefined>
+  ) => {
+    setLoading(true);
+    try {
+      const result = await client.query({
+        query: query,
+        variables: variables,
+      });
+
+      if (page > 1) {
+        setHomes((prevHomes) => [...prevHomes, ...result.data.homes.results]);
+      } else {
+        setHomes(result.data.homes.results);
+      }
+
+      setCount(result.data.homes.count);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const params = Object.fromEntries(searchParams.entries());
+
+    console.log(page);
 
     executeSearch(SearchHomes, {
       ...params,
@@ -94,10 +86,27 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       period: params.period ? Number(params.period) : undefined,
       guests: params.guests ? Number(params.guests) : 0,
       order: params.order || HomesOrder.Relevance,
-      page: params.page ? Number(params.page) : 1,
-      pageSize: params.pageSize ? Number(params.pageSize) : 10,
+      page: page,
+      pageSize: 10,
     });
-  }, [location]);
+  }, [location, page]);
+
+  const updateUrlParams = (
+    key: string,
+    value: string | null,
+    e: React.ChangeEvent<HTMLSelectElement> | null
+  ) => {
+    const searchParams = new URLSearchParams(location.search);
+
+    if (key === 'period') {
+      searchParams.set(key, value as string);
+    }
+    if (key !== 'period') {
+      searchParams.set(key, e?.target.value ?? '');
+    }
+    setPage(1);
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  };
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -121,6 +130,9 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
         setHomePrices,
         count,
         setCount,
+        // fetchMoreHomes,
+        page,
+        setPage,
       }}
     >
       {children}

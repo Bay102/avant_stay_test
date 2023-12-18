@@ -22,6 +22,9 @@ export type AppContextTypes = {
     value: React.SetStateAction<ApolloQueryResult<HomePriceQuery> | undefined>
   ) => void;
   priceLoad: boolean;
+  // fetchMoreHomes: (page: number) => Promise<void>;
+  page: number;
+  setPage: (value: React.SetStateAction<number>) => void;
 };
 
 export type PriceProps = {
