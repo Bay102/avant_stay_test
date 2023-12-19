@@ -14,11 +14,11 @@ import {
 export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
-  const [loading, setLoading] = useState<boolean>(false);
   const [homes, setHomes] = useState<Home[]>([]);
-  const [priceLoad, setPriceLoad] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [homePrices, setHomePrices] =
     useState<ApolloQueryResult<HomePriceQuery>>();
+  const [priceLoad, setPriceLoad] = useState<boolean>(false);
   const [count, setCount] = useState<number>(0);
   const [page, setPage] = useState(1);
   const location = useLocation();
