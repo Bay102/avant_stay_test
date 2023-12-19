@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { AppContextTypes } from '../../types';
 import { client } from '../../ApolloClient';
 import { SearchHomes } from '../../queries';
-import { ApolloQueryResult, DocumentNode } from '@apollo/client';
+import { ApolloQueryResult } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Home,
@@ -24,40 +24,14 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  function splitString(str: string) {
-    return str.match(/.{1,10}/g);
-  }
-
-  const updateHomePrices = async (date: string) => {
-    setPriceLoad(true);
-    if (date) {
-      const dates = splitString(date);
-      const checkInDate = dates ? dates[0] : '';
-      const checkOutDate = dates ? dates[1] : '';
-      try {
-        const homePrices = await client.query({
-          query: HomePriceDocument,
-          variables: {
-            ids: homes.map((home) => home.id),
-            period: { checkIn: checkInDate, checkOut: checkOutDate },
-          },
-        });
-        setHomePrices(homePrices);
-        homePrices.loading ? setPriceLoad(true) : setPriceLoad(false);
-      } catch (error) {
-        console.error('Error updating home prices: ', error);
-      }
-    }
-  };
-
   const executeSearch = async (
-    query: DocumentNode,
     variables: Record<string, string | number | boolean | undefined>
   ) => {
     setLoading(true);
+
     try {
       const result = await client.query({
-        query: query,
+        query: SearchHomes,
         variables: variables,
       });
 
@@ -78,7 +52,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     const searchParams = new URLSearchParams(location.search);
     const params = Object.fromEntries(searchParams.entries());
 
-    executeSearch(SearchHomes, {
+    executeSearch({
       ...params,
       region: params.region ? params.region : undefined,
       period: params.period ? Number(params.period) : undefined,
@@ -88,6 +62,43 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
       pageSize: 10,
     });
   }, [location, page]);
+
+  function splitString(str: string) {
+    return str.match(/.{1,10}/g);
+  }
+
+  const updateHomePrices = async (date: string) => {
+    setPriceLoad(true);
+    if (date) {
+      const dates = splitString(date);
+      const checkInDate = dates ? dates[0] : '';
+      const checkOutDate = dates ? dates[1] : '';
+
+      try {
+        const homePrices = await client.query({
+          query: HomePriceDocument,
+          variables: {
+            ids: homes.map((home) => home.id),
+            period: { checkIn: checkInDate, checkOut: checkOutDate },
+          },
+        });
+
+        setHomePrices(homePrices);
+        homePrices.loading ? setPriceLoad(true) : setPriceLoad(false);
+      } catch (error) {
+        console.error('Error updating home prices: ', error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const params = Object.fromEntries(searchParams.entries());
+
+    if (params.period) {
+      updateHomePrices(params.period);
+    }
+  }, [homes, location]);
 
   const updateUrlParams = (
     key: string,
@@ -99,21 +110,14 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     if (key === 'period') {
       searchParams.set(key, value as string);
     }
+
     if (key !== 'period') {
       searchParams.set(key, e?.target.value ?? '');
     }
+
     setPage(1);
     navigate(`${location.pathname}?${searchParams.toString()}`);
   };
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const params = Object.fromEntries(searchParams.entries());
-
-    if (params.period) {
-      updateHomePrices(params.period);
-    }
-  }, [homes, location]);
 
   return (
     <AppContext.Provider

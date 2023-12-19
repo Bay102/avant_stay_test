@@ -2,7 +2,7 @@ import { InputLabel, NavSelect, VerticalLine } from '../Styles';
 import { useAppProvider, useGetRegions } from '../Providers/hookExports';
 
 const Regions = () => {
-  const { data } = useGetRegions();
+  const { data: regions } = useGetRegions();
   const { updateUrlParams } = useAppProvider();
 
   return (
@@ -16,7 +16,7 @@ const Regions = () => {
         >
           <option value="">Select...</option>
           <option value="">All Regions</option>
-          {data?.regions.map((region) => (
+          {regions?.regions.map((region) => (
             <option key={region?.id} value={region?.id}>
               {region?.name}, {region?.stateCode}
             </option>

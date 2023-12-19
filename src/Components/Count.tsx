@@ -8,7 +8,7 @@ const HomeCount = () => {
     <CountContainer>
       <CountHeader>YOUR STAY IN ONE OF</CountHeader>
       <CountLine />
-      <Count>{loading ? 'Loading' : `${count} homes`}</Count>
+      <Count>{loading ? 'Loading homes' : `${count} homes`}</Count>
     </CountContainer>
   );
 };

@@ -1,4 +1,3 @@
-import { DocumentNode } from 'graphql';
 import { BookingPeriod, Home, HomePriceQuery } from './gql/graphql';
 import { ApolloQueryResult } from '@apollo/client';
 
@@ -9,7 +8,6 @@ export type AppContextTypes = {
   count: number;
   setCount: (count: number) => void;
   executeSearch: (
-    query: DocumentNode,
     variables: Record<string, string | number | boolean>
   ) => Promise<void>;
   updateUrlParams: (
