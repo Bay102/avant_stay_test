@@ -1,5 +1,7 @@
 import { Order } from './Order';
 import Regions from './Regions';
+import { Dates } from './DatePicker';
+import { Guests } from './Guests';
 import {
   HeaderBar,
   InputBar,
@@ -14,8 +16,6 @@ import {
   InputContainer,
   VerticalLine,
 } from '../Styles';
-import { Guests } from './Guests';
-import { Dates } from './DatePicker';
 
 export const SearchBar = () => {
   return (

@@ -1,5 +1,15 @@
 import styled from 'styled-components';
 
+const size = {
+  tablet: '820px',
+  desktop: '2560px',
+};
+
+export const device = {
+  tablet: `(max-width: ${size.tablet})`,
+  desktop: `(min-width: ${size.desktop})`,
+};
+
 // NavBar Styles
 export const NavContainer = styled.div`
   position: fixed;
@@ -175,6 +185,10 @@ export const HomesContainer = styled.div`
 export const CountContainer = styled.div`
   position: relative;
   margin-left: 100px;
+
+  @media ${device.tablet} {
+    margin-left: 20px;
+  }
 `;
 
 export const CountHeader = styled.p`
@@ -204,7 +218,6 @@ export const Count = styled.div`
 `;
 
 // HomeCard Styles
-
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
@@ -212,6 +225,10 @@ export const Card = styled.div`
   width: 80%;
   height: max-content;
   margin: auto;
+
+  @media ${device.tablet} {
+    width: 95%;
+  }
 `;
 
 export const Info = styled.div`
@@ -223,6 +240,7 @@ export const Info = styled.div`
 
 export const Image = styled.img`
   max-width: 390px;
+  min-width: 300px;
   width: 390px;
   height: 208px;
 `;
@@ -245,6 +263,10 @@ export const Attributes = styled.div`
   font-size: 12px;
   display: flex;
   gap: 20px;
+
+  @media ${device.tablet} {
+    font-size: 10px;
+  }
 `;
 
 export const AttributeIcon = styled.img``;

@@ -2,24 +2,24 @@ import { createContext, useEffect, useState } from 'react';
 import { AppContextTypes } from '../../types';
 import { client } from '../../ApolloClient';
 import { SearchHomes } from '../../queries';
+import { ApolloQueryResult, DocumentNode } from '@apollo/client';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Home,
   HomePriceDocument,
   HomePriceQuery,
   HomesOrder,
 } from '../../gql/graphql';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ApolloQueryResult, DocumentNode } from '@apollo/client';
 
 export const AppContext = createContext({} as AppContextTypes);
 
 export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [homes, setHomes] = useState<Home[]>([]);
-  const [count, setCount] = useState<number>(0);
   const [priceLoad, setPriceLoad] = useState<boolean>(false);
   const [homePrices, setHomePrices] =
     useState<ApolloQueryResult<HomePriceQuery>>();
+  const [count, setCount] = useState<number>(0);
   const [page, setPage] = useState(1);
   const location = useLocation();
   const navigate = useNavigate();
