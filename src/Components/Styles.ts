@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+const theme = {
+  primaryText: '#022B54',
+  secondaryText: '#53c3d0',
+};
+
 const size = {
   tablet: '820px',
   desktop: '2560px',
@@ -45,7 +50,7 @@ export const Link = styled.a`
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
   &:hover {
-    color: #53c3d0;
+    color: ${theme.secondaryText};
   }
 `;
 
@@ -64,11 +69,12 @@ export const AuthButton = styled.div`
   font-family: 'Source Sans 3', sans-serif;
   font-size: 16px;
   cursor: pointer;
+  color: ${theme.primaryText};
   border: 2px solid ${(props) => props.color || 'none'};
   border-radius: 4px;
 
   &:hover {
-    border-color: #53c3d0;
+    border-color: ${theme.secondaryText};
   }
 `;
 
@@ -78,7 +84,6 @@ export const NavLogo = styled.img`
 
 export const InputContainer = styled.div`
   display: flex;
-  // justify-content: center;
   margin: auto;
   width: 90%;
   gap: 10px;
@@ -104,7 +109,7 @@ export const InputLabel = styled.div<InputLabelProps>`
   flex-direction: column;
   font-size: 11px;
   font-family: 'Source Sans 3', sans-serif;
-  color: #53c3d0;
+  color: ${theme.secondaryText};
   width: ${(props) => props.width || 'auto'};
   padding: 5px 10px;
   margin-left: ${(props) => props.mLeft || '0'};
@@ -138,7 +143,7 @@ export const CouponBox = styled.div<InputLabelProps>`
   box-sizing: border-box;
   font-size: 11px;
   font-family: 'Source Sans 3', sans-serif;
-  color: #53c3d0;
+  color: ${theme.secondaryText};
   padding: 5px 10px;
   width: ${(props) => props.width || 'auto'};
 `;
@@ -195,7 +200,7 @@ export const CountHeader = styled.p`
   font-family: 'Source Sans 3', sans-serif;
   font-size: 10px;
   font-weight: 100;
-  color: #53c3d0;
+  color: ${theme.secondaryText};
   margin: 0;
 `;
 
@@ -208,7 +213,7 @@ export const CountLine = styled.div`
   height: 0.1px;
   width: 68px;
   margin: 5px 7px;
-  background-color: #53c3d0;
+  background-color: ${theme.secondaryText};
 `;
 
 export const Count = styled.div`
@@ -218,6 +223,7 @@ export const Count = styled.div`
 `;
 
 // HomeCard Styles
+
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
@@ -248,13 +254,13 @@ export const Image = styled.img`
 export const Location = styled.div`
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
-  color: #53c3d0;
+  color: ${theme.secondaryText};
 `;
 
 export const Name = styled.h2`
   font-size: 1rem;
   font-family: 'Afacad', sans-serif;
-  color: #333;
+  color: #022b54;
   margin: 5px 0;
 `;
 
@@ -284,9 +290,7 @@ export const PriceContainer = styled.div`
   gap: 30px;
   height: 60px;
   width: 100%;
-  // background-color: #f5f5f5;
   margin-top: 40px;
-  // border-top: 1px solid #ebebeb;
 `;
 
 export const PriceBox = styled.div`
@@ -300,12 +304,12 @@ export const PriceBox = styled.div`
 
 export const TotalPrice = styled.div`
   text-align: left;
+  color: ${theme.primaryText};
 `;
 
 export const Season = styled.div`
   font-size: 12px;
   color: grey;
-  // padding-left: 20px;
 `;
 
 export const PerNight = styled.div`
@@ -358,11 +362,11 @@ export const NoRegionsBtn = styled.div`
   width: 210px;
   padding: 3px 0;
   margin-top: 30px;
-  border: 2px solid #53c3d0;
+  border: 2px solid ${theme.secondaryText};
   border-radius: 4px;
   font-family: 'Source Sans 3', sans-serif;
   text-align: center;
-  color: #53c3d0;
+  color: ${theme.secondaryText};
 
   &:hover {
     border-color: #1c5d9f;
