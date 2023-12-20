@@ -9,6 +9,7 @@ import { HomesContainer } from './Styles';
 
 export const Homes = () => {
   const { loading, homes, count, page, setPage } = useAppProvider();
+  console.log(page);
 
   return (
     <HomesContainer>
@@ -24,6 +25,8 @@ export const Homes = () => {
         next={() => setPage(page + 1)}
         hasMore={homes.length === count ? false : true}
         loader={<CardsSkeleton />}
+        scrollThreshold={1.0}
+        // loader={<Homes />}
       >
         {!loading &&
           homes?.map((home: Home) => <HomeCard home={home} key={home.id} />)}

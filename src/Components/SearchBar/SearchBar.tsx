@@ -1,6 +1,6 @@
 import { Order } from './Order';
 import Regions from './Regions';
-import { Dates } from './DatePicker';
+import { Period } from './Period';
 import { Guests } from './Guests';
 import {
   HeaderBar,
@@ -41,7 +41,7 @@ export const SearchBar = () => {
       <InputContainer>
         <InputBar>
           <Regions />
-          <Dates />
+          <Period />
           <VerticalLine />
           <Guests />
           <Order />
