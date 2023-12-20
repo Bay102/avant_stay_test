@@ -5,7 +5,7 @@ export const Order = () => {
   const { updateUrlParams } = useAppProvider();
 
   return (
-    <InputLabel width="15%">
+    <InputLabel width="20%">
       Order
       <NavSelect
         onChange={(e) => updateUrlParams('order', null, e)}
