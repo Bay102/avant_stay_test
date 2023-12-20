@@ -9,11 +9,7 @@ const Regions = () => {
     <>
       <InputLabel width="30%">
         Where
-        <NavSelect
-          onChange={(e) => updateUrlParams('region', null, e)}
-          name=""
-          id=""
-        >
+        <NavSelect onChange={(e) => updateUrlParams('region', null, e)}>
           <option value="">Select...</option>
           <option value="">All Regions</option>
           {regions?.regions.map((region) => (

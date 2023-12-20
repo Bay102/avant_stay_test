@@ -12,7 +12,7 @@ export const Guests = () => {
           <option value="">Select...</option>
           {Array.from({ length: 30 }, (_, i) => (
             <option key={i + 1} value={i + 1}>
-              {i + 1}
+              {i + 1 + ' guests'}
             </option>
           ))}
         </NavSelect>

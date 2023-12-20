@@ -5,12 +5,13 @@ import { format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useAppProvider } from '../Providers/hookExports';
 
-export const Dates = () => {
+export const Period = () => {
   const [calendar, setCalendar] = useState(false);
   const [startDate, setStartDate] = useState<Date | null | undefined>(null);
   const [formattedStartDate, setFormattedStartDate] = useState<string>('');
   const [formattedEndDate, setFormattedEndDate] = useState<string>('');
   const [endDate, setEndDate] = useState<Date | null | undefined>(null);
+  const [active, setActive] = useState<boolean>(false);
 
   const { updateUrlParams } = useAppProvider();
 
@@ -35,7 +36,7 @@ export const Dates = () => {
   };
 
   return (
-    <InputLabel width="25%">
+    <InputLabel onFocus={() => setActive(true)} active={active} width="25%">
       When
       {!startDate ? (
         <FormatDate

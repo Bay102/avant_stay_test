@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const theme = {
   primaryText: '#022B54',
   secondaryText: '#53c3d0',
+  primaryFont: 'Source Sans 3, sans-serif',
 };
 
 const size = {
@@ -102,6 +103,7 @@ export const InputBar = styled.div`
 interface InputLabelProps {
   width?: string;
   mLeft?: string;
+  active?: boolean;
 }
 
 export const InputLabel = styled.div<InputLabelProps>`
@@ -114,6 +116,13 @@ export const InputLabel = styled.div<InputLabelProps>`
   padding: 5px 10px;
   margin-left: ${(props) => props.mLeft || '0'};
   cursor: pointer;
+  border: ${(props) => (props.active ? '3px solid #A3DFE6' : 'none')}
+  border-color: ${(props) => (props.active ? theme.secondaryText : '#ccc')};
+  
+  &:hover {
+    border: 2px solid #A3DFE6;
+    border-radius: 3px;
+  }
 `;
 
 export const FormatDate = styled.div`
@@ -125,11 +134,6 @@ export const Input = styled.input`
   height: 25px;
   border: none;
   font-family: 'Source Sans 3', sans-serif;
-
-  &:focus {
-    border: none;
-    outline: none;
-  }
 `;
 
 export const CouponBox = styled.div<InputLabelProps>`
@@ -373,4 +377,13 @@ export const NoRegionsBtn = styled.div`
     color: #1c5d9f;
     cursor: pointer;
   }
+`;
+
+//Skeleton Styles
+export const HomesLoading = styled.div` 
+  width: 182px
+  height: 30px;
+  background: lightgrey;
+  color: lightgrey;
+  margin: auto;
 `;
