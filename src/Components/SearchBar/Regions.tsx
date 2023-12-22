@@ -15,12 +15,14 @@ const Regions = () => {
 
     const regionName = e.target.value;
     const newSearchParams = new URLSearchParams(searchParams.toString());
+
     newSearchParams.delete('region');
 
     if (regionId) {
       newSearchParams.append('region', regionId);
       navigate(`/regions/${regionName}?${newSearchParams.toString()}`);
     }
+
     if (regionName === 'all') {
       navigate(`/homes`);
     }

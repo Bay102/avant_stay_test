@@ -25,7 +25,6 @@ export const Homes = () => {
         hasMore={homes.length === count ? false : true}
         loader={<CardsSkeleton />}
         scrollThreshold={1.0}
-        // loader={<Homes />}
       >
         {!loading &&
           homes?.map((home: Home) => <HomeCard home={home} key={home.id} />)}
