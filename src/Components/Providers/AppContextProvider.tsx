@@ -10,6 +10,7 @@ import {
   HomePriceQuery,
   HomesOrder,
 } from '../../gql/graphql';
+// import { useGetRegions } from './hookExports';
 
 export const AppContext = createContext({} as AppContextTypes);
 
@@ -23,6 +24,8 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   const [page, setPage] = useState(1);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // const { data: regions } = useGetRegions();
 
   const executeSearch = async (
     variables: Record<string, string | number | boolean | undefined>
@@ -51,6 +54,8 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const params = Object.fromEntries(searchParams.entries());
+
+    //>could find the Id here and then use it to find the name
 
     executeSearch({
       ...params,
@@ -109,9 +114,7 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
 
     if (key === 'period') {
       searchParams.set(key, value as string);
-    }
-
-    if (key !== 'period') {
+    } else {
       searchParams.set(key, e?.target.value ?? '');
     }
 

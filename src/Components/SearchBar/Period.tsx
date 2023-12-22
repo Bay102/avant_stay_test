@@ -11,7 +11,6 @@ export const Period = () => {
   const [formattedStartDate, setFormattedStartDate] = useState<string>('');
   const [formattedEndDate, setFormattedEndDate] = useState<string>('');
   const [endDate, setEndDate] = useState<Date | null | undefined>(null);
-  const [active, setActive] = useState<boolean>(false);
 
   const { updateUrlParams } = useAppProvider();
 
@@ -36,7 +35,7 @@ export const Period = () => {
   };
 
   return (
-    <InputLabel onFocus={() => setActive(true)} active={active} width="25%">
+    <InputLabel width="25%">
       When
       {!startDate ? (
         <FormatDate

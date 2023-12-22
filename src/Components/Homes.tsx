@@ -9,7 +9,6 @@ import { HomesContainer } from './Styles';
 
 export const Homes = () => {
   const { loading, homes, count, page, setPage } = useAppProvider();
-  console.log(page);
 
   return (
     <HomesContainer>
