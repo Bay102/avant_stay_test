@@ -16,20 +16,15 @@ export const Period = () => {
 
   const onChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
-
     setStartDate(start);
     setEndDate(end);
-
     if (start && end) {
       const formattedStart = format(start, 'yyyy-MM-dd');
       const formattedEnd = format(end, 'yyyy-MM-dd');
       console.log(formattedStart, formattedEnd);
-
       setFormattedStartDate(formattedStart);
       setFormattedEndDate(formattedEnd);
-
       updateUrlParams('period', formattedStart + formattedEnd, null);
-
       setCalendar(false);
     }
   };

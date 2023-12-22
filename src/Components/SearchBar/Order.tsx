@@ -7,11 +7,7 @@ export const Order = () => {
   return (
     <InputLabel width="20%">
       Order
-      <NavSelect
-        onChange={(e) => updateUrlParams('order', null, e)}
-        name=""
-        id=""
-      >
+      <NavSelect onChange={(e) => updateUrlParams('order', null, e)}>
         <option value="RELEVANCE">Relevance</option>
         <option value="PRICE_ASC">Price: lowest first</option>
         <option value="PRICE_DESC">Price: highest first</option>
