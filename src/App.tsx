@@ -13,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/homes" />} />
             <Route path="/homes" element={<SearchPage />} />
+            <Route path="/regions/:regionName" element={<SearchPage />} />
           </Routes>
         </AppContextProvider>
       </BrowserRouter>
