@@ -21,6 +21,10 @@ export const HomePrice: React.FC<HomePriceProps> = ({
 }) => {
   const { loading } = useAppProvider();
 
+  const addComma = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <PriceContainer>
       {!loading && !totalPrice && (
@@ -39,7 +43,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
               <img src="/high.svg" alt="" />
               Prime Season
             </PriceText>
-            ${seasonPrice.highSeason.minPrice} -{' '}
+            ${seasonPrice.highSeason.minPrice}
             {seasonPrice.highSeason.maxPrice}
             <PriceText>per night</PriceText>
           </PriceBox>
@@ -48,7 +52,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
       {totalPrice && (
         <PriceBox>
           <PriceText>Total | {nights} nights</PriceText>
-          <TotalPrice>{`$${totalPrice}`}</TotalPrice>
+          <TotalPrice>{`$${addComma(totalPrice)}`}</TotalPrice>
           <PerNight>{`$${Math.round(
             totalPrice / (nights ?? 1)
           )} per night`}</PerNight>
