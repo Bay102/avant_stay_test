@@ -67,7 +67,7 @@ export const HomeCard = ({ home }: { home: Home }) => {
           <HomePrice
             totalPrice={price}
             nights={nights}
-            seasonPrice={home.seasonPricing}
+            seasonPricing={home.seasonPricing}
           />
         )}
       </Info>

@@ -11,19 +11,22 @@ import {
 interface HomePriceProps {
   totalPrice: number | null;
   nights: number | null;
-  seasonPrice: HomeSeasonPricing;
+  seasonPricing: HomeSeasonPricing;
 }
 
 export const HomePrice: React.FC<HomePriceProps> = ({
   totalPrice,
   nights,
-  seasonPrice,
+  seasonPricing,
 }) => {
   const { loading } = useAppProvider();
-
   const addComma = (num: number) => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   };
+  const lowSeasonMin = seasonPricing?.lowSeason?.minPrice;
+  const lowSeasonMax = addComma(seasonPricing?.lowSeason?.maxPrice);
+  const highSeasonMin = addComma(seasonPricing?.highSeason?.minPrice);
+  const highSeasonMax = addComma(seasonPricing?.highSeason?.maxPrice);
 
   return (
     <PriceContainer>
@@ -34,7 +37,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
               <img src="/low.svg" alt="" />
               Budget Season
             </PriceText>
-            ${seasonPrice.lowSeason.minPrice} - {seasonPrice.lowSeason.maxPrice}
+            ${lowSeasonMin} - {lowSeasonMax}
             <PriceText>per night</PriceText>
           </PriceBox>
           <PriceBox>
@@ -43,8 +46,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
               <img src="/high.svg" alt="" />
               Prime Season
             </PriceText>
-            ${seasonPrice.highSeason.minPrice} -{' '}
-            {seasonPrice.highSeason.maxPrice}
+            ${highSeasonMin} - {highSeasonMax}
             <PriceText>per night</PriceText>
           </PriceBox>
         </>
