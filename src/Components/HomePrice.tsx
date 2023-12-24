@@ -43,7 +43,7 @@ export const HomePrice: React.FC<HomePriceProps> = ({
               <img src="/high.svg" alt="" />
               Prime Season
             </PriceText>
-            ${seasonPrice.highSeason.minPrice}
+            ${seasonPrice.highSeason.minPrice} -{' '}
             {seasonPrice.highSeason.maxPrice}
             <PriceText>per night</PriceText>
           </PriceBox>
