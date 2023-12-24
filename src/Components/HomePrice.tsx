@@ -4,7 +4,7 @@ import {
   PerNight,
   PriceBox,
   PriceContainer,
-  Season,
+  PriceText,
   TotalPrice,
 } from './Styles';
 
@@ -26,28 +26,28 @@ export const HomePrice: React.FC<HomePriceProps> = ({
       {!loading && !totalPrice && (
         <>
           <PriceBox>
-            <Season>
+            <PriceText>
               <img src="/low.svg" alt="" />
               Budget Season
-            </Season>
+            </PriceText>
             ${seasonPrice.lowSeason.minPrice} - {seasonPrice.lowSeason.maxPrice}
-            <Season>per night</Season>
+            <PriceText>per night</PriceText>
           </PriceBox>
           <PriceBox>
-            <Season>
+            <PriceText>
               {' '}
               <img src="/high.svg" alt="" />
               Prime Season
-            </Season>
+            </PriceText>
             ${seasonPrice.highSeason.minPrice} -{' '}
             {seasonPrice.highSeason.maxPrice}
-            <Season>per night</Season>
+            <PriceText>per night</PriceText>
           </PriceBox>
         </>
       )}
       {totalPrice && (
         <PriceBox>
-          <Season>Total | {nights} nights</Season>
+          <PriceText>Total | {nights} nights</PriceText>
           <TotalPrice>{`$${totalPrice}`}</TotalPrice>
           <PerNight>{`$${Math.round(
             totalPrice / (nights ?? 1)

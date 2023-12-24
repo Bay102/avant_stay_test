@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Home } from '../gql/graphql';
 import { HomePrice } from './HomePrice';
 import { useAppProvider } from './Providers/hookExports';
-import { PriceSkeleton } from './CardSkeleton';
+import { PriceSkeleton } from './LoadingCards';
 import {
   Attribute,
   AttributeIcon,

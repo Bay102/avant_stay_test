@@ -9,7 +9,7 @@ import {
   Name,
 } from './Styles';
 
-export const CardsSkeleton = () => {
+export const LoadingCards = () => {
   return (
     <>
       <SingleCard />

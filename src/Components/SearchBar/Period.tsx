@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import { FormatDate, InputLabel } from '../Styles';
+import { FormattedDate, InputLabel } from '../Styles';
 import { format } from 'date-fns';
-import 'react-datepicker/dist/react-datepicker.css';
 import { useAppProvider } from '../Providers/hookExports';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const Period = () => {
   const [calendar, setCalendar] = useState(false);
@@ -11,7 +11,6 @@ export const Period = () => {
   const [formattedStartDate, setFormattedStartDate] = useState<string>('');
   const [formattedEndDate, setFormattedEndDate] = useState<string>('');
   const [endDate, setEndDate] = useState<Date | null | undefined>(null);
-
   const { updateUrlParams } = useAppProvider();
 
   const onChange = (dates: [Date | null, Date | null]) => {
@@ -21,7 +20,6 @@ export const Period = () => {
     if (start && end) {
       const formattedStart = format(start, 'yyyy-MM-dd');
       const formattedEnd = format(end, 'yyyy-MM-dd');
-      console.log(formattedStart, formattedEnd);
       setFormattedStartDate(formattedStart);
       setFormattedEndDate(formattedEnd);
       updateUrlParams('period', formattedStart + formattedEnd, null);
@@ -29,19 +27,19 @@ export const Period = () => {
     }
   };
 
+  const showCalendar = () => {
+    calendar ? setCalendar(false) : setCalendar(true);
+  };
+
   return (
     <InputLabel width="25%">
       When
       {!startDate ? (
-        <FormatDate
-          onClick={() => (calendar ? setCalendar(false) : setCalendar(true))}
-        >
-          Select...
-        </FormatDate>
+        <FormattedDate onClick={() => showCalendar()}>Select...</FormattedDate>
       ) : (
-        <FormatDate
-          onClick={() => (calendar ? setCalendar(false) : setCalendar(true))}
-        >{`${formattedStartDate} | ${formattedEndDate}`}</FormatDate>
+        <FormattedDate
+          onClick={() => showCalendar()}
+        >{`${formattedStartDate} | ${formattedEndDate}`}</FormattedDate>
       )}
       {calendar && (
         <div>

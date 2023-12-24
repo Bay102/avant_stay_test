@@ -7,14 +7,12 @@ export type AppContextTypes = {
   setHomes: (homes: Home[]) => void;
   count: number;
   setCount: (count: number) => void;
+  selectedRegion: string;
+  setSelectedRegion: (region: string) => void;
   executeSearch: (
     variables: Record<string, string | number | boolean>
   ) => Promise<void>;
-  updateUrlParams: (
-    key: string,
-    value: string | null,
-    e: React.ChangeEvent<HTMLSelectElement> | null
-  ) => void;
+  updateUrlParams: UpdateUrlParamsType;
   homePrices: ApolloQueryResult<HomePriceQuery> | undefined;
   setHomePrices: (
     value: React.SetStateAction<ApolloQueryResult<HomePriceQuery> | undefined>
@@ -29,3 +27,9 @@ export type PriceProps = {
   period: BookingPeriod;
   coupon?: string;
 };
+
+export type UpdateUrlParamsType = (
+  key: string,
+  value?: string | number | null,
+  e?: React.ChangeEvent<HTMLInputElement | HTMLSelectElement> | null
+) => void;
