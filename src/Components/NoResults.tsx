@@ -1,3 +1,5 @@
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useAppProvider } from './Providers/hookExports';
 import {
   Illustration,
   NoRegionsBtn,
@@ -6,6 +8,19 @@ import {
 } from './Styles';
 
 export const NoResults = () => {
+  const { count, setSelectedRegion } = useAppProvider();
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+
+  const allRegions = () => {
+    if (count === 0) {
+      const newSearchParams = new URLSearchParams(searchParams.toString());
+      newSearchParams.delete('region');
+      setSelectedRegion('All Regions');
+      navigate(`/homes?${newSearchParams.toString()}`);
+    }
+  };
+
   return (
     <NoResultsContainer>
       <Illustration src="/illustration.svg" alt="" />
@@ -15,7 +30,7 @@ export const NoResults = () => {
       <NoResultsText>
         Try something else or reset the filters to see all region homes.
       </NoResultsText>
-      <NoRegionsBtn>See all homes</NoRegionsBtn>
+      <NoRegionsBtn onClick={() => allRegions()}>See all homes</NoRegionsBtn>
     </NoResultsContainer>
   );
 };

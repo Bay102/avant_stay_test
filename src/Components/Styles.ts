@@ -125,7 +125,7 @@ export const InputLabel = styled.div<InputLabelProps>`
   }
 `;
 
-export const FormatDate = styled.div`
+export const FormattedDate = styled.div`
   color: black;
   font-size: 12px;
 `;
@@ -227,7 +227,6 @@ export const Count = styled.div`
 `;
 
 // HomeCard Styles
-
 export const Card = styled.div`
   display: flex;
   flex-direction: row;
@@ -311,7 +310,7 @@ export const TotalPrice = styled.div`
   color: ${theme.primaryText};
 `;
 
-export const Season = styled.div`
+export const PriceText = styled.div`
   font-size: 12px;
   color: grey;
 `;

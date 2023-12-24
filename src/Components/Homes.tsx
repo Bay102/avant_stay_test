@@ -1,6 +1,6 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Home } from '../gql/graphql';
-import { CardsSkeleton } from './CardSkeleton';
+import { LoadingCards } from './LoadingCards';
 import HomeCount from './Count';
 import { HomeCard } from './HomeCard';
 import { NoResults } from './NoResults';
@@ -15,15 +15,15 @@ export const Homes = () => {
       {loading && (
         <>
           <HomeCount />
-          <CardsSkeleton />
+          <LoadingCards />
         </>
       )}
       {count !== 0 ? <HomeCount /> : <NoResults />}
       <InfiniteScroll
         dataLength={homes.length}
         next={() => setPage(page + 1)}
-        hasMore={homes.length === count ? false : true}
-        loader={<CardsSkeleton />}
+        hasMore={homes?.length !== count}
+        loader={<LoadingCards />}
         scrollThreshold={1.0}
       >
         {!loading &&
