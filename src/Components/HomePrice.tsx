@@ -1,4 +1,4 @@
-import { HomeSeasonPricing } from '../gql/graphql';
+import { HomePriceProps } from '../types';
 import { useAppProvider } from './Providers/hookExports';
 import {
   PerNight,
@@ -8,11 +8,9 @@ import {
   TotalPrice,
 } from './Styles';
 
-interface HomePriceProps {
-  totalPrice: number | null;
-  nights: number | null;
-  seasonPricing: HomeSeasonPricing;
-}
+const addComma = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 
 export const HomePrice: React.FC<HomePriceProps> = ({
   totalPrice,
@@ -20,9 +18,6 @@ export const HomePrice: React.FC<HomePriceProps> = ({
   seasonPricing,
 }) => {
   const { loading } = useAppProvider();
-  const addComma = (num: number) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
   const lowSeasonMin = seasonPricing?.lowSeason?.minPrice;
   const lowSeasonMax = addComma(seasonPricing?.lowSeason?.maxPrice);
   const highSeasonMin = addComma(seasonPricing?.highSeason?.minPrice);

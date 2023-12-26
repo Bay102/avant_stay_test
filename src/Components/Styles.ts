@@ -7,13 +7,15 @@ const theme = {
 };
 
 const size = {
-  tablet: '820px',
-  desktop: '2560px',
+  tablet: '1100px',
+  desktop: '2500px',
+  largeDesktop: '1300px',
 };
 
 export const device = {
   tablet: `(max-width: ${size.tablet})`,
-  desktop: `(min-width: ${size.desktop})`,
+  desktop: `(max-width: ${size.desktop})`,
+  largeDesktop: `(min-width: ${size.largeDesktop})`,
 };
 
 // NavBar Styles
@@ -168,6 +170,7 @@ export const NavSelect = styled.select`
   font-family: 'Source Sans 3', sans-serif;
   font-size: 12px;
   cursor: pointer;
+
   &:focus {
     border: none;
     outline: none;
@@ -189,6 +192,10 @@ export const HomesContainer = styled.div`
   justify-content: center;
   height: max-content;
   margin-top: 185px;
+
+  @media ${device.tablet} {
+    width: 90%;
+  }
 `;
 
 export const CountContainer = styled.div`
@@ -197,6 +204,10 @@ export const CountContainer = styled.div`
 
   @media ${device.tablet} {
     margin-left: 20px;
+  }
+
+  @media ${device.largeDesktop} {
+    margin-left: 150px;
   }
 `;
 

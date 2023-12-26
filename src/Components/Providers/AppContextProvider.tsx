@@ -53,7 +53,6 @@ export const AppContextProvider = ({ children }: { children: JSX.Element }) => {
     const params = Object.fromEntries(searchParams.entries());
 
     executeSearch({
-      ...params,
       region: params.region ? params.region : undefined,
       period: params.period ? Number(params.period) : undefined,
       guests: params.guests ? Number(params.guests) : 0,
