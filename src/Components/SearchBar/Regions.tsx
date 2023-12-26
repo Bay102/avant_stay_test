@@ -15,11 +15,13 @@ const Regions = () => {
     const regionId = regions?.regions.find((region: Region | null) =>
       (region as Region)?.name.includes(e.target.value)
     )?.id;
-    const regionName = e.target.value.replace(/\s/g, '-');
+
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.delete('region');
+
     setSelectedRegion(e.target.value);
 
+    const regionName = e.target.value.replace(/\s/g, '-');
     if (regionId) {
       newSearchParams.append('region', regionId);
       navigate(`/regions/${regionName}?${newSearchParams.toString()}`);

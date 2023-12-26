@@ -1,4 +1,9 @@
-import { BookingPeriod, Home, HomePriceQuery } from './gql/graphql';
+import {
+  BookingPeriod,
+  Home,
+  HomePriceQuery,
+  HomeSeasonPricing,
+} from './gql/graphql';
 import { ApolloQueryResult } from '@apollo/client';
 
 export type AppContextTypes = {
@@ -27,6 +32,12 @@ export type PriceProps = {
   period: BookingPeriod;
   coupon?: string;
 };
+
+export interface HomePriceProps {
+  totalPrice: number | null;
+  nights: number | null;
+  seasonPricing: HomeSeasonPricing;
+}
 
 export type UpdateUrlParamsType = (
   key: string,
