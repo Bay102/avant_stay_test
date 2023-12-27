@@ -4,11 +4,9 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Region } from '../../gql/graphql';
 
 const Regions = () => {
+  const { selectedRegion, setSelectedRegion } = useAppProvider();
   const { data: regions } = useGetRegions();
   const [searchParams] = useSearchParams();
-
-  const { selectedRegion, setSelectedRegion } = useAppProvider();
-
   const navigate = useNavigate();
 
   const navigateToRegion = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -22,10 +20,12 @@ const Regions = () => {
     setSelectedRegion(e.target.value);
 
     const regionName = e.target.value.replace(/\s/g, '-');
+
     if (regionId) {
       newSearchParams.append('region', regionId);
       navigate(`/regions/${regionName}?${newSearchParams.toString()}`);
     }
+
     if (regionName === 'all') {
       newSearchParams.delete('region', regionId);
       navigate(`/homes?${newSearchParams.toString()}`);

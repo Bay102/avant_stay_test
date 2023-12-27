@@ -28,7 +28,6 @@ export const HomeCard = ({ home }: { home: Home }) => {
         setPrice(homePrice?.total as number);
         setNights(homePrice?.numberOfNights as number);
       };
-
       findHomePrice();
     }
   }, [homePrices]);
